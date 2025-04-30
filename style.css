@@ -1,69 +1,149 @@
-/* 1. Use a more-intuitive box-sizing model */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
+@import "reset.css";
+
+
+@font-face {
+    font-family: "Young Serif";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("assets/fonts/young-serif/YoungSerif-Regular.ttf") format("truetype");
 }
 
-/* 2. Remove default margin */
-* {
-    margin: 0;
+@font-face {
+    font-family: "Outfit";
+    font-style: normal;
+    font-weight: 400, 600, 700;
+    font-display: swap;
+    src: url("assets/fonts/outfit/Outfit-VariableFont_wght.ttf") format("truetype");
 }
 
-/* 3. Enable keyword animations */
-@media (prefers-reduced-motion: no-preference) {
-    html {
-        interpolate-size: allow-keywords;
-    }
+:root {
+    --clr-white: hsl(0, 0%, 100%);
+    --clr-stone-100: hsl(30, 54%, 90%);
+    --clr-stone-150: hsl(30, 18%, 87%);
+    --clr-stone-600: hsl(30, 10%, 34%);
+    --clr-stone-900: hsl(24, 5%, 18%);
+    --clr-brown-800: hsl(14, 45%, 36%);
+    --clr-rose-800: hsl(332, 51%, 32%);
+    --clr-rose-50: hsl(330, 100%, 98%);
+
+    --border-radius: .5rem;
+
 }
 
 body {
-    line-height: 1.5;
+    font-family: "Outfit", sans-serif;
+    font-size: 16px;
+    color: var(--clr-stone-600);
+    background-color: var(--clr-stone-100);
+    padding-block: 4rem;
+    display: grid;
+    place-content: center;
 }
 
-/* 6. Improve media defaults */
-img,
-picture,
-video,
-canvas,
-svg {
-    display: block;
-    max-width: 100%;
-}
-
-/* 7. Inherit fonts for form controls */
-input,
-button,
-textarea,
-select {
-    font: inherit;
-}
-
-/* 8. Avoid text overflows */
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    overflow-wrap: break-word;
-}
-
-/* 9. Improve line wrapping */
-p {
-    text-wrap: pretty;
-    max-width: 65ch;
-}
 
 h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    text-wrap: balance;
+h2 {
+    font-family: "Young Serif", serif;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 3rem;
+    color: var(--clr-stone-900);
+}
+
+h2 {
+    font-size: 2rem;
+    color: var(--clr-brown-800);
+}
+
+.card {
+    --card-padding: 2rem;
+    background-color: var(--clr-white);
+    border-radius: var(--border-radius);
+    max-width: 50rem;
+    padding: var(--card-padding);
+}
+
+.card *+* {
+    margin-top: 1.5rem;
+}
+
+.card__image {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.card__note {
+    --note-padding: 1.5rem;
+    background-color: var(--clr-rose-50);
+    padding: var(--note-padding);
+    border-radius: var(--border-radius);
+}
+
+.note__header {
+    font-size: 1.25rem;
+    color: var(--clr-rose-800);
+    font-weight: 600;
+    margin-bottom: 0.875rem;
+}
+
+.instructions__list li::marker {
+    color: var(--clr-brown-800);
+    font-weight: 600;
+
+}
+
+.nutrition__table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.nutrition__table td {
+    padding: .875rem;
+    padding-inline: 2rem;
+    border-bottom: 1px solid var(--clr-stone-150);
+}
+
+.nutrition__table tr:last-child td {
+    border-bottom: none;
+}
+
+.nutrition__table td:nth-child(2) {
+    color: var(--clr-brown-800);
+    font-weight: 600;
+}
+
+.value-col td {
+    color: red;
+}
+
+.list li {
+    padding-inline-start: 1.5rem;
+}
+
+.list-aligned {
+    padding-inline-start: var(--align-padding, var(--card-padding));
 }
 
 
+@media screen and (max-width: 768px) {
+    body {
+        padding: 0;
+    }
 
+    .card__image {
+        margin-left: calc(-1 * var(--card-padding));
+        margin-right: calc(-1 * var(--card-padding));
+        margin-top: calc(-1 * var(--card-padding));
+        width: calc(100% + 2 * var(--card-padding));
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .list li {
+        padding-inline-start: .5rem;
+    }
+
+}
